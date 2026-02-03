@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>로그인 폼</title>
+<!--</head>-->
+<!--<body>-->
+<!-- <h2>로그인</h2>-->
+<!-- <form>-->
+<!-- <p> &lt;!&ndash;<p> … 여기에 있는 내용 전체를 하나의 문단으로 묶음&ndash;&gt;-->
+<!-- <label for="username">아이디:</label><br>-->
+<!-- <input type="text" id="username" name="username">-->
+<!-- </p>-->
+<!-- <p>-->
+<!-- <label for="password">비밀번호:</label><br>-->
+<!-- <input type="password" id="password" name="password">-->
+<!-- </p>-->
+<!-- <button type="submit">로그인</button>-->
+<!-- </form>-->
+<!--</body>-->
+<!--</html>-->
+<!--&lt;!&ndash;비밀번호 입력 필드: 보안이 가장 중요한 입력 요소 input type="password &ndash;&gt;-->
+<!--input type="password"를 사용하면 사용자가 입력하는 글자가 화면에는 점(●)이나 별표(*)로 표시되어 다른 사람이 볼 수 없게 됨-->
+<!--숨겨진 입력 필드(input type="hidden")는 사용자에게는 전혀 보이지 않지만 폼이 전송될 때 함께 서버로 보내지는 정보-->
+<!--어떤 페이지에서 폼을 작성했는지, 현재 로그인한 사용자의 ID는 무엇인지 같은 뒤에서 필요한 정보들을 담아둡니다-->
+<br><br>
+
+<form>
+ <p>
+ <label for="username">아이디:</label><br>
+ <input type="text" id="username" name="username"
+ placeholder="아이디를 입력하세요" required>
+ </p>
+ <p>
+ <label for="password">비밀번호:</label><br>
+ <input type="password" id="password" name="password"
+ placeholder="비밀번호를 입력하세요"
+ minlength="8" required> <!--최소 8글자 이상 필요-->
+ </p>
+ <button type="submit">로그인</button>
+</form>
+   <!--placeholder: 입력 전 안내 문구 표시-->
+  <!--required: 필수 입력 필드로 지정-->
+  <!--minlength="8": 최소 8자 이상 입력해야 함-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>회원가입 폼</title>
+</head>
+<body>
+ <h2>회원가입</h2>
+ <form>
+ <!-- 사용자에게 보이는 입력 필드들 -->
+ <p>
+ <label for="email">이메일:</label><br>
+ <input type="email" id="email" name="email" required>
+ </p>
+ <p>
+ <label for="newPassword">비밀번호:</label><br> <!--새비밀번호 만들기--> <!--바로 아래꺼 새 비밀번호 만든거 확인하는 작업-->
+ <input type="password" id="newPassword" name="password"
+ minlength="8" required>
+ </p>
+ <p>
+ <label for="confirmPassword">비밀번호 확인:</label><br>
+ <input type="password" id="confirmPassword" name="confirmPassword"
+ minlength="8" required>
+ </p>
+
+ <!-- 숨겨진 정보들 (사용자에게는 보이지 않음) -->
+ <input type="hidden" name="signup_source" value="main_page">
+ <input type="hidden" name="referrer" value="google_ads">
+ <input type="hidden" name="form_version" value="2.1">
+   <!--name="..": 서버로 전송될 때 key값, value:서버로 전송될 value 값 -->
+   <!--signup_source="main_page":사용자가 어디서 가입했는지 기록 (메인 페이지에서 가입) -->
+   <!--referrer="google_ads": 유입 경로 기록 (구글 광고 클릭해서 들어옴) -->
+   <!--form_version="2.1": 폼 버전 정보 기록 (폼 업데이트 추적 가능) 숨겨진 정보를 서버로 보내서 분석, 추적, 버전 관리 등에 활용 -->
+   <!--<input type="hidden"> = 화면에 안 보이는 입력창, 서버로 전송할 **숨겨진 데이터(key-value)**를 담는 용도 -->
+ <button type="submit">회원가입</button>
+ </form>
+
+ <script>
+ // 폼이 전송될 때 숨겨진 값들도 함께 전송되는지 확인
+ document.querySelector('form').addEventListener('submit', function(e) {
+ e.preventDefault(); // 실제 전송은 막고 콘솔에서 확인
+
+ const formData = new FormData(this);
+ console.log('전송될 데이터:');
+ for (let [key, value] of formData.entries()) {
+ if (key.includes('password')) {
+ console.log(key + ': ' + '●'.repeat(value.length));
+ } else {
+ console.log(key + ': ' + value);
+ }
+ }
+ });
+ </script>
+</body>
+</html>
+
+  <!--type="password": 입력 내용을 ●●●로 숨김 처리-->
+  <!--type="hidden": 사용자에게는 보이지 않지만 서버로 전송되는 정보-->
+  <!--보안을 위해 비밀번호 필드에는 minlength, required 속성 활용 / 숨겨진 필드는 추가 정보 전달에 유용-->
+
+
+

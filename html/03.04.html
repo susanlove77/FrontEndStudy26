@@ -1,0 +1,56 @@
+<!--체크박스 (Checkbox)
+- 여러 개 선택 가능 (다중 선택)
+- 각각 독립적으로 체크/해제
+- 취미, 관심사, 약관 동의 등에 활용
+- input type="checkbox"로 구현-->
+
+<!--라디오버튼 (Radio Button)
+- 하나만 선택 가능 (단일 선택)
+- 하나를 선택하면 다른 것은 자동 해제
+- 성별, 학년, 결제 방법 등에 활용
+- input type="radio"로 구현-->
+
+<!--HTML 구조의 핵심
+선택 요소들을 만들 때 가장 중요한 것은 그룹핑입니다.
+
+체크박스: 각각 다른 name 속성 사용 (독립적)
+라디오버튼: 같은 name 속성 사용 (그룹으로 묶임)
+label 태그: 클릭 영역 확대와 접근성 향상-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <title>취미 선택하기</title>
+</head>
+<body>
+ <h2>당신의 취미를 선택해주세요 (복수 선택 가능)</h2>
+
+ <form>
+ <input type="checkbox" id="reading" name="hobby_reading" value="독서">
+ <label for="reading"> 독서</label><br>
+<!--<label> … 입력창의 설명 텍스트 / for="reading" … 어떤 입력창(input)과 연결될지 지정
+연결된 입력창의 id와 값이 같아야 함 / 체크박스와 “독서” 텍스트가 연결됨 / 사용자가 “독서” 글자를 클릭해도 체크박스 선택 가능 -->
+   <!--<label for="reading">독서</label> = “독서”라는 라벨을 입력창(id="reading")과 연결, 클릭하면 입력창이 선택되고 스크린리더가 읽을 수 있음-->
+
+   <input type="checkbox" id="movie" name="hobby_movie" value="영화감상">
+ <label for="movie"> 영화감상</label><br>
+
+ <input type="checkbox" id="sports" name="hobby_sports" value="운동">
+ <label for="sports"> 운동</label><br>
+
+ <input type="checkbox" id="game" name="hobby_game" value="게임">
+ <label for="game"> 게임</label><br>
+ </form>
+</body>
+</html>
+
+<!--label for 역할
+
+1️⃣ 접근성 향상
+화면 읽기 도구(스크린 리더)가 라벨을 읽어줌
+2️⃣ 클릭 영역 확대
+라벨 텍스트 클릭 → 입력창 활성화
+작은 체크박스/라디오 버튼도 쉽게 선택 가능
+3️⃣ 폼 구조 정리
+입력창과 텍스트를 묶어 시각적으로 깔끔하게 표현-->
