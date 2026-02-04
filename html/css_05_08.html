@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+ .greeting {
+ font-size: 20px;
+ color: #333;
+ padding: 10px;
+ }
+
+ .greeting::before {
+ content: " ";
+ color: #ff6b6b;
+ }
+
+ .greeting::after {
+ content: " ";
+ color: #4ecdc4;
+ </style>
+  <style>
+ .button {
+ display: inline-block;
+ padding: 12px 20px;
+ background-color: #3498db;
+ color: white;
+ text-decoration: none;
+ border-radius: 5px;
+ position: relative;
+ }
+
+ .button::before {
+ content: "";
+ display: inline-block;
+ width: 0;
+ height: 0;
+ border-left: 8px solid transparent;
+ border-right: 8px solid transparent;
+ border-bottom: 8px solid white;
+ margin-right: 8px;
+ vertical-align: middle;
+ }
+
+ .button::after {
+ content: "→";
+ margin-left: 8px;
+ font-weight: bold;
+ }
+</style>
+<a href="#" class="button">다운로드</a>
+
+<style>
+ .speech-bubble {
+ background-color: #f8f9fa;
+ border: 2px solid #dee2e6;
+ border-radius: 10px;
+ padding: 15px;
+ margin: 20px;
+ position: relative;
+ max-width: 300px;
+ }
+
+ .speech-bubble::after {
+ content: "";
+ position: absolute;
+ bottom: -12px;
+ left: 30px;
+ width: 0;
+ height: 0;
+ border-left: 12px solid transparent;
+ border-right: 12px solid transparent;
+ border-top: 12px solid #f8f9fa;
+ }
+
+ .speech-bubble::before {
+ content: "";
+ position: absolute;
+ bottom: -15px;
+ left: 28px;
+ width: 0;
+ height: 0;
+ border-left: 14px solid transparent;
+ border-right: 14px solid transparent;
+ border-top: 14px solid #dee2e6;
+ }
+</style>
+<div class="speech-bubble">
+ 가상 요소를 사용하면 이렇게 멋진 말풍선도 만들 수 있어요!
+</div>
+
+</head>
+<body>
+ <p class="greeting">안녕하세요!</p>
+</body>
+</html>
+
+<-- .greeting::before : .greeting 요소 앞에 가짜 요소를 하나 생성 HTML엔 없는데, CSS로 “앞에 뭔가 하나 붙여라” 하는 느낌.
+                        content 없으면 아예 안 나타남
+display: inline-block;이 가상요소를 글자처럼 한 줄에 놓되 너비/높이/테두리를 가질 수 있게 함
+border-left: 8px solid transparent;삼각형 만들기 재료 중 하나
+vertical-align: middle;텍스트랑 세로 중앙 정렬
+ position: absolute;기준점 기준으로 공중에 띄워서 배치
+.speech-bubble 앞에 가짜 요소 하나 생성 → 말풍선 꼬리 역할
+absolute → 말풍선에 붙이기 , width/height: 0 → 삼각형 준비, border → 말풍선 꼬리 완성
+ border-left: 14px solid transparent;
+ border-right: 14px solid transparent;
+ border-top: 14px solid #dee2e6; <--아래를 향한 삼각형 -->-->

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+ <style>
+ .box-demo { /*박스 모델 설명, 연습, 시각화할 때 쓰는 코드*/
+ width: 200px;   /* width, height : content 영역 크기 */
+ height: 100px;
+ padding: 20px;
+ border: 5px solid #3498db;
+ margin: 30px;
+ background-color: #ecf0f1; /*아주 연한 회색*/
+ color: #2c3e50; /* 진한 남색+ 회색 섞인 색 -> content 안 글자 */
+ text-align: center; /* 가로 중앙*/
+ line-height: 100px;  /* 세로 중앙*/
+ }
+
+ /* 박스 모델 시각화를 위한 스타일 */
+ .container {
+ background-color: #f8f9fa; /*아주 연한 회색 */
+ padding: 50px;
+ }
+ /* 기본값: content-box */
+.content-box {
+ box-sizing: content-box;
+ width: 200px;
+ padding: 20px;
+ border: 5px solid #e74c3c; /*빨간색*/
+ /* 실제 크기: 250px (200 + 20×2 + 5×2) */
+}
+
+/* 추천: border-box */
+.border-box {
+ box-sizing: border-box;
+ width: 200px;
+ padding: 20px;
+ border: 5px solid #27ae60; /*초록색*/
+ /* 실제 크기: 200px (padding과 border 포함) */
+}
+<div class="content-box">content-box</div>
+<div class="border-box">border-box</div>
+
+ </style>
+</head>
+<body>
+ <div class="container">
+ <div class="box-demo">
+ 박스 모델 데모
+ </div>
+ </div>
+</body>
+
+</html>
+
+
