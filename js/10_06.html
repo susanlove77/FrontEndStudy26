@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    // 사용자 데이터 준비
+    const users = [
+     { name: "김개발", age: 20, job: "student" },
+     { name: "박멘토", age: 35, job: "developer" },
+     { name: "이디자인", age: 28, job: "designer" },
+     { name: "최기획", age: 32, job: "planner" },
+     { name: "정학생", age: 19, job: "student" }
+    ];
+
+    // 1. map() - 모든 사용자의 나이를 1살씩 올리기
+    const olderUsers = users.map(user => {
+     return { ...user, age: user.age + 1 };
+    });
+
+    console.log("나이가 1살씩 올라간 사용자들:");
+    console.log(olderUsers);
+
+    // 2. filter() - 성인만 필터링하기
+    const adults = users.filter(user => user.age >= 20);
+
+    console.log("성인 사용자들:");
+    console.log(adults);
+
+    // 3. reduce() - 전체 나이의 평균 구하기
+    const totalAge = users.reduce((sum, user) => sum + user.age, 0);
+    const averageAge = totalAge / users.length;
+
+    console.log(`평균 나이: ${averageAge}살`);
+
+    // 메서드 체이닝으로 고차 함수 조합하기
+    const result = users
+     .filter(user => user.age >= 20) // 성인만 필터링
+     .map(user => ({ ...user, age: user.age + 1 })) // 나이 1살씩 증가
+     .map(user => `${user.name}(${user.age}살)`) // 이름과 나이 문자열로 변환
+
+    console.log("성인 사용자들의 정보:");
+    result.forEach(info => console.log(info));
+
+    // 개발자만 찾아서 경력 추가하기
+    const developers = users
+     .filter(user => user.job === "developer")
+     .map(user => ({
+     ...user,
+     experience: user.age >= 30 ? "시니어" : "주니어"
+     }));
+
+    console.log("개발자 정보:");
+    console.log(developers);
+
+    // 커스텀 고차 함수 만들기
+    function createValidator(condition) {
+     return function(data) {
+     return data.filter(condition);
+     };
+    }
+
+    // 검증 함수들 생성
+    const getAdults = createValidator(user => user.age >= 20);
+    const getStudents = createValidator(user => user.job === "student");
+    const getExperienced = createValidator(user => user.age >= 30);
+
+    console.log("성인:", getAdults(users));
+    console.log("학생:", getStudents(users));
+    console.log("경력자:", getExperienced(users));
+
+    // 함수를 반환하는 고차 함수
+    function createGreeting(prefix) {
+     return function(name) {
+     return `${prefix} ${name}님, 안녕하세요!`;
+     };
+    }
+
+    const formalGreeting = createGreeting("안녕하십니까");
+    const casualGreeting = createGreeting("안녕");
+
+    console.log(formalGreeting("김개발")); // "안녕하십니까 김개발님, 안녕하세요!"
+    console.log(casualGreeting("박멘토")); // "안녕 박멘토님, 안녕하세요!"
+
+  </script>
+</body>
+</html>

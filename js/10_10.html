@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+
+    // 기본 배열 전개
+    const numbers = [1, 2, 3];
+    const newNumbers = [...numbers]; // 배열 복사
+
+    console.log(numbers); // [1, 2, 3]
+    console.log(newNumbers); // [1, 2, 3]
+    console.log(numbers === newNumbers); // false (다른 배열)
+
+    // 배열 합치기
+    const fruits = ['사과', '바나나'];
+    const vegetables = ['당근', '양파'];
+    const foods = [...fruits, ...vegetables];
+
+    console.log(foods); // ['사과', '바나나', '당근', '양파']
+
+    // 배열에 새 요소 추가
+    const originalArray = [1, 2, 3];
+    const extendedArray = [...originalArray, 4, 5];
+
+    console.log(extendedArray); // [1, 2, 3, 4, 5]
+
+    // 객체 복사
+    const person = {
+     name: '김개발',
+     age: 20,
+     major: '정보통신공학'
+    };
+
+    const newPerson = {...person}; // 객체 복사
+
+    console.log(person); // {name: '김개발', age: 20, major: '정보통신공학'}
+    console.log(newPerson); // {name: '김개발', age: 20, major: '정보통신공학'}
+    console.log(person === newPerson); // false (다른 객체)
+
+    // 객체 합치기
+    const basicInfo = {name: '김개발', age: 20};
+    const schoolInfo = {major: '정보통신공학', grade: 2};
+    const fullInfo = {...basicInfo, ...schoolInfo};
+
+    console.log(fullInfo);
+    // {name: '김개발', age: 20, major: '정보통신공학', grade: 2}
+
+    // 객체 속성 수정
+    const updatedPerson = {...person, age: 21};
+    console.log(updatedPerson);
+    // {name: '김개발', age: 21, major: '정보통신공학'}
+
+    // 사용자 정보 관리 예제
+    const users = [
+     {id: 1, name: '김개발', department: '개발팀'},
+     {id: 2, name: '이디자인', department: '디자인팀'}
+    ];
+
+    // 새 사용자 추가
+    const newUser = {id: 3, name: '최기획', department: '기획팀'};
+    const updatedUsers = [...users, newUser];
+
+    console.log('사용자 추가 후:', updatedUsers);
+
+    // 특정 사용자 정보 수정
+    const updateUserInfo = (userList, userId, newInfo) => {
+     return userList.map(user =>
+     user.id === userId
+     ? {...user, ...newInfo} // 전개 연산자로 정보 병합
+     : user
+     );
+    };
+
+    const modifiedUsers = updateUserInfo(updatedUsers, 1, {
+     name: '김개발',
+     department: '개발팀',
+     position: '주니어 개발자'
+    });
+
+    console.log('정보 수정 후:', modifiedUsers);
+
+    // 함수 인자로 배열 전개
+    const calculateSum = (a, b, c) => a + b + c;
+    const numberArray = [10, 20, 30];
+
+    console.log(calculateSum(...numberArray)); // 60
+
+    // 얕은 복사 주의사항
+    const complexObject = {
+     name: '김개발',
+     skills: ['HTML', 'CSS', 'JavaScript']
+    };
+
+    const copiedObject = {...complexObject};
+    copiedObject.skills.push('Vue.js');
+
+    console.log(complexObject.skills); // ['HTML', 'CSS', 'JavaScript', 'Vue.js']
+    // 원본도 변경됨!
+
+  </script>
+</body>
+</html>

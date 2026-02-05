@@ -1,0 +1,86 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>변수 실습</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>변수와 상수 실습</h1>-->
+
+<!--    <script>-->
+<!--      // 안전한 계산기 만들기-->
+<!--      function 안전한나누기(a, b) {-->
+<!--       try {-->
+<!--       if (b === 0) {-->
+<!--       throw new Error("0으로 나눌 수 없습니다!");-->
+<!--       }-->
+
+<!--       let result = a / b;-->
+<!--       console.log(`${a} ÷ ${b} = ${result}`);-->
+<!--       return result;-->
+
+<!--       } catch (error) {-->
+<!--       console.log("에러가 발생했습니다:", error.message);-->
+<!--       return null;-->
+
+<!--       } finally {-->
+<!--       console.log("계산 작업이 완료되었습니다.");-->
+<!--       }-->
+<!--      }-->
+
+<!--      // 테스트해보기-->
+<!--      안전한나누기(10, 2); // 정상 작동-->
+<!--      안전한나누기(10, 0); // 에러 처리-->
+
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>변수 실습</title>
+</head>
+<body>
+    <h1>변수와 상수 실습</h1>
+
+    <script>
+      function 회원가입검증(userData) {
+       try {
+       // 이름 검증
+       if (!userData.name || userData.name.trim() === "") {
+       throw new Error("이름을 입력해주세요!");
+       }
+
+       // 이메일 검증
+       if (!userData.email || !userData.email.includes("@")) {
+       throw new Error("올바른 이메일 주소를 입력해주세요!");
+       }
+
+       // 나이 검증
+       if (userData.age < 0 || userData.age > 150) {
+       throw new RangeError("올바른 나이를 입력해주세요!");
+       }
+
+       console.log(" 회원가입이 완료되었습니다!");
+       return true;
+
+       } catch (error) {
+       if (error instanceof RangeError) {
+       console.log(" 범위 오류:", error.message);
+       } else {
+       console.log(" 입력 오류:", error.message);
+       }
+       return false;
+       }
+      }
+       // 테스트 해보기
+      let 사용자1 = { name: "김개발", email: "kim@example.com", age: 20 };
+      let 사용자2 = { name: "", email: "invalid-email", age: -5 };
+
+      회원가입검증(사용자1); // 성공
+      회원가입검증(사용자2); // 실패
+    </script>
+</body>
+</html>

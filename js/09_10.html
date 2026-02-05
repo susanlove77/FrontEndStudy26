@@ -1,0 +1,138 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!-- <h1>happy village</h1>-->
+<!-- <script>-->
+<!--   // 전역 스코프에 선언된 변수-->
+<!--    let apartmentName = "해피빌리지";-->
+<!--    var totalFloors = 15;-->
+
+<!--    function showApartmentInfo() {-->
+<!--     console.log(apartmentName); // 접근 가능!-->
+<!--     console.log(totalFloors); // 접근 가능!-->
+<!--    }-->
+
+<!--    showApartmentInfo(); // "해피빌리지", 15 출력-->
+
+<!--     function myRoom() {-->
+<!--     // 지역 스코프에 선언된 변수-->
+<!--     let roomNumber = "301호";-->
+<!--     let mySecret = "비밀일기";-->
+
+<!--     console.log(roomNumber); // 접근 가능!-->
+<!--     console.log(apartmentName); // 전역 변수도 접근 가능!-->
+<!--    }-->
+
+<!--    myRoom(); // "301호", "해피빌리지" 출력-->
+<!--    // console.log(roomNumber); // 에러! 접근 불가능-->
+
+<!-- </script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>happy village</h1>
+ <script>
+     let globalVar = "전역 변수";
+
+    function outerFunction() {
+     let outerVar = "외부 함수 변수";
+
+     function innerFunction() {
+     let innerVar = "내부 함수 변수";
+
+     console.log(globalVar); // 전역에서 찾음
+     console.log(outerVar); // 외부 함수에서 찾음
+     console.log(innerVar); // 현재 함수에서 찾음
+     }
+
+     innerFunction();
+     // console.log(innerVar); // 에러! 접근 불가능
+    }
+
+    outerFunction();
+
+     let message = "전역 메시지";
+
+    function showMessage() {
+     let message = "지역 메시지"; // 전역 변수를 가림
+     console.log(message); // 어떤 값이 출력될까요?
+    }
+
+    showMessage(); // "지역 메시지" 출력
+    console.log(message); // "전역 메시지" 출력
+
+ </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>변수 실습</title>
+</head>
+<body>
+    <h1>카운트</h1>
+
+    <script>
+      // 잘못된 예 - 전역 변수 사용
+      let count = 0;
+
+      function increment() {
+       count++;
+       console.log("현재 카운트:", count);
+      }
+
+      function reset() {
+       count = 0;
+       console.log("카운트 리셋됨");
+      }
+
+      // 개선된 예 - 클로저 활용
+      function createCounter() {
+       let count = 0; // 은닉된 변수
+
+       return {
+       increment: function() {
+       count++;
+       console.log("현재 카운트:", count);
+       },
+       reset: function() {
+       count = 0;
+       console.log("카운트 리셋됨");
+       },
+       getCount: function() {
+       return count;
+       }
+       };
+      }
+
+      const counter = createCounter();
+      counter.increment(); // 1
+      counter.increment(); // 2
+      console.log(counter.getCount()); // 2
+
+      function scopeTest() {
+       if (true) {
+       var varVariable = "var 변수";
+       let letVariable = "let 변수";
+       }
+
+       console.log(varVariable); // 접근 가능
+       // console.log(letVariable); // 에러! 접근 불가능
+      }
+    </script>
+</body>
+</html>
+
