@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid 통합 레이아웃</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .main-layout {
+            min-height: 100vh;
+            display: grid;
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+            grid-template-columns: 250px 1fr;
+            grid-template-rows: 80px 1fr 60px;
+            gap: 1rem;
+        }
+
+        .header { grid-area: header; background: #e9ecef; }
+        .sidebar { grid-area: sidebar; background: #f8f9fa; }
+        .main-content { grid-area: main; background: #ffffff; }
+        .footer { grid-area: footer; background: #e9ecef; }
+    </style>
+</head>
+<body>
+    <div class="main-layout">
+        <header class="header d-flex align-items-center px-3">
+            <h1 class="h4 mb-0">Grid 통합 레이아웃</h1>
+        </header>
+
+        <aside class="sidebar p-3">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="#">메뉴 1</a>
+                <a class="nav-link" href="#">메뉴 2</a>
+                <a class="nav-link" href="#">메뉴 3</a>
+            </nav>
+        </aside>
+
+        <main class="main-content p-3">
+            <h2>메인 콘텐츠 영역</h2>
+            <p>여기에 부트스트랩 그리드를 추가할 예정입니다.</p>
+        </main>
+
+
+
+        <footer class="footer d-flex align-items-center px-3">
+            <p class="mb-0">&copy; 2024 Grid Layout Example</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+<!--min-height: 100vh; 화면 높이만큼은 최소로 차지해라 / 100vh = 화면 전체 높이 내용이 적어도 푸터가 바닥에 붙게 함-->
+<!--display: grid; 이 요소를 Grid 컨테이너로 만들겠다
+이제 안에 있는 자식들은: 행(row), 열(column), 영역(area) 으로 배치 가능-->
+<!--grid-template-columns: 250px 1fr;
+👉 열(column) 너비 설정
+첫 번째 열: 250px → 사이드바
+두 번째 열: 1fr → 남은 공간 전부(main)-->
+<!--grid-template-rows: 80px 1fr 60px;
+👉 행(row) 높이 설정
+1행: 80px → header
+2행: 1fr → main + sidebar
+3행: 60px → footer
+즉: 헤더/푸터는 고정 | 가운데만 늘어남-->
+<!--gap: 1rem; 칸 사이 간격 모든 row / column 사이에 1rem(보통 16px) 간격-->
+<!--px-3: 가로 좌우 안쪽여백 3만큼 준다-->
